@@ -1,0 +1,37 @@
+No nefarious operations found. This is a straightforward macOS utility for emulating middle-click on trackpads.
+
+  What was checked
+
+  ┌────────────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │              Area              │                                              Finding                                              │
+  ├────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Network calls / data           │ None. Zero URLSession, HTTP, or socket code.                                                      │
+  │ exfiltration                   │                                                                                                   │
+  ├────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ External URL usage             │ Two hardcoded GitHub links, opened only on explicit user click.                                   │
+  ├────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Sensitive data access          │ No keychain, clipboard, browser data, or credential access.                                       │
+  ├────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Shell command execution        │ None in app code. Build script uses only standard xcodebuild.                                     │
+  ├────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ File system access             │ Only standard UserDefaults for settings.                                                          │
+  ├────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Obfuscated strings             │ None found. All strings are human-readable.                                                       │
+  ├────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Third-party dependencies       │ None at all — only Apple system frameworks.                                                       │
+  ├────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Tracking / telemetry           │ Zero analytics, crash reporters, or event reporting.                                              │
+  ├────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Background timers              │ Three timers, all legitimate: accessibility polling, listener restart after sleep/wake, and a     │
+  │                                │ brief UI delay.                                                                                   │
+  └────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  A few notable things (all benign)
+
+  - REMOVED: AppleScript (TrayMenu.swift:180-189): Used for login-item management on pre-macOS 13. The script source is hardcoded and fully visible.
+  - Private MultitouchSupport framework: An undocumented Apple system framework, standard practice for trackpad utilities.
+  - CGEvent taps + Accessibility APIs: The core mechanism for mouse button emulation — exactly what the app claims to do, and it requires
+  your explicit permission grant.
+
+  Bottom line: The codebase is transparent, has no external dependencies, makes no network calls, and stores only settings locally. Nothing
+   suspicious.

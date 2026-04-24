@@ -165,27 +165,15 @@ extension TrayMenu {
 // MARK: Actions
 extension TrayMenu {
   @objc private func openWebsite() {
-    if let url = URL(string: "https://github.com/artginzburg/MiddleClick") {
+    if let url = URL(string: "https://github.com/unhuman/MiddleClick") {
       NSWorkspace.shared.open(url)
     }
   }
 
   @objc private func openAccessibilitySettings() {
-    if #available(macOS 10.15, *) {
-      if let url = URL(
-        string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") {
-        NSWorkspace.shared.open(url)
-      }
-    } else {
-      let appleScript = """
-        tell application "System Preferences"
-          activate
-          reveal anchor "Privacy_Accessibility" of pane "com.apple.preference.security"
-        end tell
-        """
-      if let script = NSAppleScript(source: appleScript) {
-        script.executeAndReturnError(nil)
-      }
+    if let url = URL(
+      string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") {
+      NSWorkspace.shared.open(url)
     }
   }
 
