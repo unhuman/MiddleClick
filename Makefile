@@ -1,7 +1,7 @@
 all: archive export compress
 
 ## Development targets
-.PHONY: run force-build clean-build build-release
+.PHONY: run force-build clean-build clean build-release
 
 # Find all source files to track dependencies
 SOURCES := $(shell find MiddleClick MoreTouch ConfigCore -type f \( -name "*.swift" -o -name "*.h" -o -name "*.m" \) 2>/dev/null)
@@ -44,6 +44,11 @@ force-build:
 clean-build:
 	@rm -f $(BUILD_STAMP)
 	@echo "🧹 Build stamp cleaned"
+
+clean:
+	@rm -f $(BUILD_STAMP)
+	@xcodebuild -project MiddleClick.xcodeproj -scheme MiddleClick clean 2>/dev/null | grep -E "BUILD (SUCCEEDED|FAILED)|error:" || true
+	@echo "🧹 Build products cleaned"
 
 ## Release targets
 archive:
