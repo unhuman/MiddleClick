@@ -4,7 +4,7 @@ enum SystemPermissions {
   /// #### To quickly reset the permission, run:
   ///
   /// ```
-  /// tccutil reset Accessibility art.ginzburg.MiddleClick
+  /// tccutil reset Accessibility com.unhuman.MiddleClick
   /// ```
   static func detectAccessibilityIsGranted(forcePrompt: Bool) -> Bool {
     return AXIsProcessTrustedWithOptions([kAXTrustedCheckOptionPrompt.takeUnretainedValue(): forcePrompt] as CFDictionary)

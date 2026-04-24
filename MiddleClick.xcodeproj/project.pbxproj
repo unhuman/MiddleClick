@@ -202,7 +202,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 3.2.0;
 				OTHER_SWIFT_STDLIB_TOOL_FLAGS = "--source-libraries /dev/null";
-				PRODUCT_BUNDLE_IDENTIFIER = art.ginzburg.MiddleClick;
+				PRODUCT_BUNDLE_IDENTIFIER = com.unhuman.MiddleClick;
 				PRODUCT_NAME = MiddleClick;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -248,7 +248,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 3.2.0;
 				OTHER_SWIFT_STDLIB_TOOL_FLAGS = "--source-libraries /dev/null";
-				PRODUCT_BUNDLE_IDENTIFIER = art.ginzburg.MiddleClick;
+				PRODUCT_BUNDLE_IDENTIFIER = com.unhuman.MiddleClick;
 				PRODUCT_NAME = MiddleClick;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";

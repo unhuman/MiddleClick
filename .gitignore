@@ -1,4 +1,5 @@
 build
+.claude/
 *.pbxuser
 *.mode1v3
 **/xcuserdata

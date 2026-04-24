@@ -1,7 +1,7 @@
 all: archive export compress
 
 ## Development targets
-.PHONY: run force-build clean-build
+.PHONY: run force-build clean-build build-release
 
 # Find all source files to track dependencies
 SOURCES := $(shell find MiddleClick MoreTouch ConfigCore -type f \( -name "*.swift" -o -name "*.h" -o -name "*.m" \) 2>/dev/null)
@@ -12,12 +12,26 @@ BUILD_STAMP := ./build/.build-stamp
 # Only build if sources changed since last build
 $(BUILD_STAMP): $(SOURCES)
 	@echo "🔨 Building MiddleClick (Debug)..."
-	@xcodebuild -project MiddleClick.xcodeproj -scheme MiddleClick -configuration Debug build | grep -E "BUILD (SUCCEEDED|FAILED)|error:" || true
+	@xcodebuild -project MiddleClick.xcodeproj -scheme MiddleClick -configuration Debug build CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO | grep -E "BUILD (SUCCEEDED|FAILED)|error:" || true
 	@echo "✅ Build succeeded!"
 	@mkdir -p $(dir $(BUILD_STAMP))
 	@touch $(BUILD_STAMP)
 
 build-debug: $(BUILD_STAMP)
+
+build-release:
+	@echo "🔨 Building MiddleClick (Release, unsigned)..."
+	@xcodebuild -project MiddleClick.xcodeproj -scheme MiddleClick -configuration Release build \
+		CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO \
+		| grep -E "BUILD (SUCCEEDED|FAILED)|error:" || true
+	@BUILT_PRODUCTS_DIR=$$(xcodebuild -project MiddleClick.xcodeproj -scheme MiddleClick \
+		-configuration Release -showBuildSettings 2>/dev/null \
+		| awk -F ' = ' '/ BUILT_PRODUCTS_DIR =/ {print $$2}'); \
+		mkdir -p ./build && \
+		rm -rf ./build/MiddleClick.app && \
+		cp -R "$$BUILT_PRODUCTS_DIR/MiddleClick.app" ./build/MiddleClick.app
+	@codesign --force --deep --sign - ./build/MiddleClick.app
+	@echo "✅ Release build at ./build/MiddleClick.app"
 
 run: $(BUILD_STAMP)
 	@echo "🚀 Running MiddleClick..."

@@ -13,7 +13,7 @@ Use the `log stream` command to see logs.
 ### Example
 
 ```sh
-log stream --predicate 'subsystem == "art.ginzburg.MiddleClick"' --style compact --level debug
+log stream --predicate 'subsystem == "com.unhuman.MiddleClick"' --style compact --level debug
 ```
 
 > The `--style compact` just makes the output more readable.
@@ -33,7 +33,7 @@ Categories allow you to filter for specific events defined by the app's code, e.
 Example:
 
 ```sh
-log stream --predicate 'subsystem == "art.ginzburg.MiddleClick" && category == "schedule"' --style compact --level debug
+log stream --predicate 'subsystem == "com.unhuman.MiddleClick" && category == "schedule"' --style compact --level debug
 ```
 
 This can be particularly useful when developing a new feature. You can add a new logger at [CustomLogger.swift](../MiddleClick/CustomLogger.swift), and use it in the feature's code.

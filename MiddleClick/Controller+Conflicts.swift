@@ -63,7 +63,7 @@ Workarounds — Disable 'Tap to click' in the status menu of MiddleClick.
   }
 
   @objc private func openConflictingGesturesDocs() {
-    if let url = URL(string: "https://github.com/artginzburg/MiddleClick/blob/c9dfda78b8a481a173381ca35a0bd1108afc1bbd/docs/three-finger-drag.md#three-finger-drag") {
+    if let url = URL(string: "https://github.com/unhuman/MiddleClick/blob/main/docs/three-finger-drag.md#three-finger-drag") {
       NSWorkspace.shared.open(url)
     }
   }

@@ -26,7 +26,7 @@ This builds in Debug mode and launches the app, killing any running instance fir
 MiddleClick uses `os_log`. To see logs in real time:
 
 ```sh
-log stream --predicate 'subsystem == "art.ginzburg.MiddleClick"' --style compact --level debug
+log stream --predicate 'subsystem == "com.unhuman.MiddleClick"' --style compact --level debug
 ```
 
 See [docs/dev.md](./docs/dev.md) for filtering by category.

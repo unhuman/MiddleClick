@@ -1,5 +1,5 @@
-<a href="https://github.com/artginzburg/MiddleClick/releases">
-  <img align="right" src="https://img.shields.io/github/downloads/artginzburg/MiddleClick/total?color=teal" title="GitHub All Releases">
+<a href="https://github.com/unhuman/MiddleClick/releases">
+  <img align="right" src="https://img.shields.io/github/downloads/unhuman/MiddleClick/total?color=teal" title="GitHub All Releases">
 </a>
 
 <div align="center">
@@ -47,17 +47,9 @@ It's more than just `⌘`+click
 
 ## Install
 
-### Via :beer: [Homebrew](https://brew.sh) (Recommended)
-
 ```ps1
-brew install --cask middleclick
+make build-release
 ```
-
-> Check out [the cask](https://github.com/Homebrew/homebrew-cask/blob/master/Casks/m/middleclick.rb) if you're interested
-
-### <a href="https://github.com/artginzburg/MiddleClick/releases/latest/download/MiddleClick.zip">Direct Download · <img align="center" alt="GitHub release" src="https://img.shields.io/github/release/artginzburg/MiddleClick?label=%20&color=gray"></a>
-
-If you've used v1 or v2 — glance over [How to migrate](./docs/MIGRATIONS.md).
 
 <br>
 
@@ -78,7 +70,7 @@ To bring it back — just open MiddleClick again while it's already running.
 - **Note:** setting `fingers` to `2` will conflict with normal two-finger right-clicks and single-finger clicks.
 
 ```ps1
-defaults write art.ginzburg.MiddleClick fingers 4
+defaults write com.unhuman.MiddleClick fingers 4
 ```
 
 > Default is 3
@@ -89,7 +81,7 @@ defaults write art.ginzburg.MiddleClick fingers 4
 - Unfortunately, this does not serve as a palm rejection technique for huge touchpads.
 
 ```ps1
-defaults write art.ginzburg.MiddleClick allowMoreFingers true
+defaults write com.unhuman.MiddleClick allowMoreFingers true
 ```
 
 > Default is false, so that the number of fingers is precise
@@ -102,7 +94,7 @@ defaults write art.ginzburg.MiddleClick allowMoreFingers true
 - The position is normalized and values go from 0 to 1.
 
 ```ps1
-defaults write art.ginzburg.MiddleClick maxDistanceDelta 0.03
+defaults write com.unhuman.MiddleClick maxDistanceDelta 0.03
 ```
 
 > Default is 0.05
@@ -112,7 +104,7 @@ defaults write art.ginzburg.MiddleClick maxDistanceDelta 0.03
 - The maximum interval in milliseconds between touch and release for a tap to be considered valid.
 
 ```ps1
-defaults write art.ginzburg.MiddleClick maxTimeDelta 150
+defaults write com.unhuman.MiddleClick maxTimeDelta 150
 ```
 
 > Default is 300
@@ -131,9 +123,20 @@ defaults write art.ginzburg.MiddleClick maxTimeDelta 150
 2. Run `make`
 3. You'll get a `MiddleClick.app` in `./build/`
 
+### Local release build (no certificate required)
+
+To build a Release-configuration binary locally without a Developer ID certificate:
+
+```ps1
+make build-release
+```
+
+This produces an unsigned `MiddleClick.app` in `./build/`. Note: unsigned builds cannot be distributed and macOS Gatekeeper will block them on other machines.
+
 ## Credits
 
 Created by [Clément Beffa](https://clement.beffa.org/),<br/>
 fixed by [Alex Galonsky](https://github.com/galonsky) and [Carlos E. Hernandez](https://github.com/carlosh),<br/>
 revived by [Pascâl Hartmann](https://github.com/LoPablo),<br/>
-maintained by [Arthur Ginzburg](https://github.com/artginzburg)
+maintained by [Arthur Ginzburg](https://github.com/artginzburg),<br/>
+forked by [unhuman](https://github.com/unhuman)
