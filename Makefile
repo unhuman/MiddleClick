@@ -50,6 +50,18 @@ clean:
 	@xcodebuild -project MiddleClick.xcodeproj -scheme MiddleClick clean 2>/dev/null | grep -E "BUILD (SUCCEEDED|FAILED)|error:" || true
 	@echo "🧹 Build products cleaned"
 
+## Version bump targets (semantic versioning)
+.PHONY: bump-patch bump-minor bump-major
+
+bump-patch:
+	@./scripts/bump-version.sh patch
+
+bump-minor:
+	@./scripts/bump-version.sh minor
+
+bump-major:
+	@./scripts/bump-version.sh major
+
 ## Release targets
 archive:
 	xcodebuild -project MiddleClick.xcodeproj -scheme MiddleClick -configuration Release archive
